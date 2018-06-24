@@ -1,0 +1,11 @@
+ Volume in drive C is OS
+ Volume Serial Number is 8885-599F
+
+ Directory of C:\Users\Peerapong\Workspace\money
+
+24/06/2018  12:23    <DIR>          .
+24/06/2018  12:23    <DIR>          ..
+24/06/2018  12:17                84 README.md
+24/06/2018  12:23                 0 test.txt
+               2 File(s)             84 bytes
+               2 Dir(s)  70,744,416,256 bytes free
