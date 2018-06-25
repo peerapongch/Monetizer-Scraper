@@ -9,7 +9,11 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 # from selenium import WebElement
-from bs4 import BeautifulSoup as bs
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+from selenium.common.exceptions import TimeoutException
+from bs4 import BeautifulSoup
 import re
 import pandas as pd
 import os
@@ -19,15 +23,24 @@ url = "https://app.monetizer.com/"
 username = "perry96121@gmail.com"
 password = "Qg8RlLdnl7"
 
-driver = webdriver.Firefox()
+driver = webdriver.Chrome()
+# driver = webdriver.Firefox()
 driver.get(url)
-driver.implicitly_wait(30)
+driver.implicitly_wait(60)
 
 user = driver.find_element_by_id("username")
 user.send_keys(username)
 passw = driver.find_element_by_id("password")
 passw.send_keys(password)
-driver.implicitly_wait(10)
+# driver.implicitly_wait(30)
+try:
+    element = WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.XPATH,
+        "//input[@type='submit']"
+        # "//div[@class='offerList']"
+        )))
+    print('page ready')
+except TimeoutException:
+    print('took too long')
 
 enter_button = driver.find_element_by_xpath("//input[@type='submit']")
 enter_button.click()
@@ -37,16 +50,23 @@ driver.implicitly_wait(20)
 liveleads_button = driver.find_element_by_id("menu_liveleadsButton")
 liveleads_button.click()
 
-driver.implicitly_wait(10)
+try:
+    element = WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.XPATH,
+        "//li[@class='offerRow list-group-item']"
+        # "//div[@class='offerList']"
+        )))
+    print('page ready')
+except TimeoutException:
+    print('took too long')
+# finally:
+#     print('nope :(')
+#     driver.quit()
 
-s = driver.page_source
-
-print(s)
+with open('ll_source.html','w') as file:
+    file.write(driver.page_source)
 ## harvest with N-batch polling
 ## assumption that no N running entries are identical
-N = 10
+N=10
 
-
-
-
-
+soup_level1=BeautifulSoup(driver.page_source,'lxml')
+print(soup_level1)
