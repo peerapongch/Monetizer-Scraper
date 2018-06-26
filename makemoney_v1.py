@@ -17,8 +17,6 @@ from functions_v1 import *
 
 ## config
 url = "https://app.monetizer.com/"
-username = "perry96121@gmail.com"
-password = "Qg8RlLdnl7"
 cycle = 5 # limit of number of cycles
 N = 50 # maximum entries per cycle before conflict resolution
 save_file = 'save.csv'
