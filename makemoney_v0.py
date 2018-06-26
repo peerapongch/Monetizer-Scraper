@@ -20,8 +20,6 @@ import os
 import time
 
 url = "https://app.monetizer.com/"
-username = "perry96121@gmail.com"
-password = "Qg8RlLdnl7"
 
 driver = webdriver.Chrome()
 # driver = webdriver.Firefox()
