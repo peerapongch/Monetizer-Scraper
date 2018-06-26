@@ -50,6 +50,8 @@ driver.implicitly_wait(20)
 liveleads_button = driver.find_element_by_id("menu_liveleadsButton")
 liveleads_button.click()
 
+## from here refresh, wait, and repeat
+
 try:
     element = WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.XPATH,
         "//li[@class='offerRow list-group-item']"
@@ -62,8 +64,8 @@ except TimeoutException:
 #     print('nope :(')
 #     driver.quit()
 
-with open('ll_source.html','w') as file:
-    file.write(driver.page_source)
+# with open('ll_source.html','w') as file:
+#     file.write(driver.page_source)
 ## harvest with N-batch polling
 ## assumption that no N running entries are identical
 N=10
